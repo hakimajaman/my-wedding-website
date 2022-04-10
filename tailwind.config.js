@@ -5,7 +5,11 @@ module.exports = {
     "./app/views/**/*.{js, ejs}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        "google-figma-Parisienne": ["Parisienne", "cursive"],
+      },
+    },
   },
   plugins: [],
 };
