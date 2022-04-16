@@ -12,6 +12,7 @@ module.exports = {
       },
       colors: {
         "figma-C77F91": "#C77F91",
+        "figma-EA4A8D": "#EA4A8D",
       },
     },
   },

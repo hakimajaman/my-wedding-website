@@ -1,5 +1,4 @@
 import React from "react";
-import Button from "./Button";
 
 const Banner = ({
   bannerImage,
@@ -9,31 +8,32 @@ const Banner = ({
   titleString,
   titleStringColorClassName,
   description,
-  buttonName,
-  buttonProps,
+  button,
   ...props
 }) => {
   return (
     <>
       <div
-        className="h-60 bg-center bg-gray-200 flex flex-col justify-center items-center
-	md:h-72
-	lg:h-96
-	xl:h-2/3
+        className="h-60s bg-center bg-gray-200 flex flex-col justify-center items-center
+        md:h-72s
+        lg:h-96s
+        xl:h-2/3s
+        h-screen
       "
         {...props}
       >
         {bannerImage ? (
           <div
-            className="absolute h-60
-	  md:h-72
-	  lg:h-96
-	  xl:h-2/3
+            className="absolute h-60s
+	  md:h-72s
+	  lg:h-96s
+	  xl:h-2/3s
+    h-screen
 	  "
           >
             <img
               src={bannerImage}
-              className="object-fill h-full w-screen"
+              className="object-cover h-full w-screen"
               alt={bannerImageAlt}
             />
           </div>
@@ -78,7 +78,7 @@ const Banner = ({
         ) : (
           <></>
         )}
-        {buttonName ? (
+        {button ? (
           <div className="relative bg-blue-500 w-full flex justify-center">
             <div
               className="absolute mt-10
@@ -86,7 +86,7 @@ const Banner = ({
 		    xl:mt-24
 	    "
             >
-              <Button name={buttonName} {...buttonProps} />
+              {button}
             </div>
           </div>
         ) : (
