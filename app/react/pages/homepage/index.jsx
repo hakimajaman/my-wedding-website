@@ -3,10 +3,14 @@ import React from "react";
 import Banner from "../../components/Banner";
 import BannerImage from "../../../assets/images/banner.png";
 import TitleImage from "../../../assets/images/title.png";
+import Section from "../../components/Section";
+import SectionOne from "./SectionOne";
+import SectionTwo from "./SectionTwo";
+import SectionThree from "./SectionThree";
 
 const HomePage = () => {
   return (
-    <div>
+    <>
       <Banner
         bannerImage={BannerImage}
         bannerImageAlt={
@@ -17,7 +21,10 @@ const HomePage = () => {
         titleImageAlt={"Hakim&Aqilla"}
         buttonName={"UNDANGAN"}
       />
-    </div>
+      <Section component={<SectionOne />} />
+      <Section component={<SectionTwo />} />
+      <Section component={<SectionThree />} />
+    </>
   );
 };
 
