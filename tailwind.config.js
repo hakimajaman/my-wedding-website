@@ -14,6 +14,13 @@ module.exports = {
         "figma-C77F91": "#C77F91",
         "figma-EA4A8D": "#EA4A8D",
       },
+      height: {
+        "h-50rem": "50rem",
+      },
+      minHeight: {
+        96: "24rem",
+        32: "8rem",
+      },
     },
   },
   plugins: [],

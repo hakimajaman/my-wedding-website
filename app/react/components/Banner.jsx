@@ -14,23 +14,11 @@ const Banner = ({
   return (
     <>
       <div
-        className="h-60s bg-center bg-gray-200 flex flex-col justify-center items-center
-        md:h-72s
-        lg:h-96s
-        xl:h-2/3s
-        h-screen
-      "
+        className="h-h-50rem bg-center bg-gray-200 flex flex-col justify-center items-center"
         {...props}
       >
         {bannerImage ? (
-          <div
-            className="absolute h-60s
-	  md:h-72s
-	  lg:h-96s
-	  xl:h-2/3s
-    h-screen
-	  "
-          >
+          <div className="absolute h-h-50rem">
             <img
               src={bannerImage}
               className="object-cover h-full w-screen"
@@ -44,11 +32,7 @@ const Banner = ({
           <div className="mb-0 z-10">
             {titleImage ? (
               <img
-                className="w-28
-			md:w-56
-			lg:w-80
-			xl:w-96
-		"
+                className="w-96"
                 src={titleImage}
                 alt={titleImageAlt ? titleImageAlt : ""}
               />
