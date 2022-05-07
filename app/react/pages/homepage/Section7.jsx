@@ -4,7 +4,7 @@ import Card from "../../components/base/Card";
 import Input from "../../components/base/Input";
 import Textarea from "../../components/base/Textarea";
 
-const Section7 = ({ isEnglish, handleSend }) => {
+const Section7 = ({ isEnglish, handleSend, isLoading }) => {
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
 
@@ -39,13 +39,24 @@ const Section7 = ({ isEnglish, handleSend }) => {
           {isEnglish ? "Remove" : "Hapus"}
         </Button>
         <Button
-          colorClassName="border-blue-300 hover:bg-blue-300 text-blue-300 hover:text-white"
+          colorClassName={
+            isLoading
+              ? "border-blue-100 text-blue-100"
+              : "border-blue-300 hover:bg-blue-300 text-blue-300 hover:text-white"
+          }
           onClick={() => {
             handleSend(name, message);
             handleCLear();
           }}
+          disabled={isLoading}
         >
-          {isEnglish ? "Send" : "Kirim"}
+          {isLoading
+            ? isEnglish
+              ? "Sending..."
+              : "Mengirim..."
+            : isEnglish
+            ? "Send"
+            : "Kirim"}
         </Button>
       </div>
     </Card>

@@ -4,6 +4,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const entryDirectory = path.resolve(__dirname, "./app/react/modules");
+const Dotenv = require("dotenv-webpack");
 
 module.exports = (env, argv) => {
   const isProduction = argv.mode === "production";
@@ -93,6 +94,7 @@ module.exports = (env, argv) => {
       new MiniCssExtractPlugin({
         filename: "[name].min.css",
       }),
+      new Dotenv(),
     ]),
   };
 };

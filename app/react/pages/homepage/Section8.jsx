@@ -8,8 +8,8 @@ const Section8 = ({ isEnglish, messages }) => {
         {isEnglish ? "Messages" : "Pesan teman-teman:"}
       </h1>
       {messages.map((x, index) => (
-        <div className="mb-6">
-          <Card useShadow={true} key={index}>
+        <div className="mb-6" key={index}>
+          <Card useShadow={true}>
             <p className="underline mb-3 font-mono font-bold">
               {x?.name ? x.name : ""}
             </p>

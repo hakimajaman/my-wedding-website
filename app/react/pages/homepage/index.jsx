@@ -1,5 +1,5 @@
 import "../../../assets/styles/index.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "../../components/base/Button";
 import Header from "../../components/Header";
 import Banner from "../../components/Banner";
@@ -15,6 +15,7 @@ import Section6 from "./Section6";
 import Section7 from "./Section7";
 import Section8 from "./Section8";
 import Footer from "../../components/Footer";
+import { getAllMessage, sendMessage } from "../../store/actions/message";
 
 const HomePage = () => {
   const onClickButton = (e) => {
@@ -24,21 +25,27 @@ const HomePage = () => {
 
   const [english, setEnglish] = useState(false);
   const [messages, setMessages] = useState([]);
+  const [loadingButton, setLoadingButton] = useState(false);
 
   const handleLanguage = () => {
     setEnglish(!english);
   };
 
   const onSendMessage = (name, message) => {
-    const cloneMessages = messages;
     if (name.length > 0 && message.length > 0) {
-      cloneMessages.push({
-        name: name,
-        message: message,
-      });
-      setMessages(cloneMessages);
+      setLoadingButton(true);
+      sendMessage(name, message).then(
+        getAllMessage().then((data) => {
+          setMessages(data);
+          setLoadingButton(false);
+        })
+      );
     }
   };
+
+  useEffect(() => {
+    getAllMessage().then((data) => setMessages(data));
+  }, []);
 
   return (
     <>
@@ -76,7 +83,11 @@ const HomePage = () => {
         <Section6 isEnglish={english} />
       </Section>
       <Section>
-        <Section7 isEnglish={english} handleSend={onSendMessage} />
+        <Section7
+          isEnglish={english}
+          handleSend={onSendMessage}
+          isLoading={loadingButton}
+        />
       </Section>
       {messages.length > 0 ? (
         <Section>
