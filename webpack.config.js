@@ -5,6 +5,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const entryDirectory = path.resolve(__dirname, "./app/react/modules");
 const Dotenv = require("dotenv-webpack");
+const HTMLWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = (env, argv) => {
   const isProduction = argv.mode === "production";
@@ -95,6 +96,10 @@ module.exports = (env, argv) => {
         filename: "[name].min.css",
       }),
       new Dotenv(),
+      new HTMLWebpackPlugin({
+        favicon: "./public/images/favicon.ico",
+        title: "Hakim&Aqilla",
+      }),
     ]),
   };
 };

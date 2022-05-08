@@ -15,7 +15,9 @@ import Section6 from "./Section6";
 import Section7 from "./Section7";
 import Section8 from "./Section8";
 import Footer from "../../components/Footer";
+import Modal from "../../components/Modal";
 import { getAllMessage, sendMessage } from "../../store/actions/message";
+import { sendValidation } from "../../utils/validation";
 
 const HomePage = () => {
   const onClickButton = (e) => {
@@ -26,29 +28,49 @@ const HomePage = () => {
   const [english, setEnglish] = useState(false);
   const [messages, setMessages] = useState([]);
   const [loadingButton, setLoadingButton] = useState(false);
+  const [error, setError] = useState(false);
 
   const handleLanguage = () => {
     setEnglish(!english);
+    window.location.hash = english ? "#id" : "#en";
   };
 
   const onSendMessage = (name, message) => {
     if (name.length > 0 && message.length > 0) {
       setLoadingButton(true);
-      sendMessage(name, message).then(
-        getAllMessage().then((data) => {
-          setMessages(data);
-          setLoadingButton(false);
-        })
-      );
+      if (sendValidation()) {
+        sendMessage(name, message).then(
+          getAllMessage().then((data) => {
+            setMessages(data);
+            setLoadingButton(false);
+          })
+        );
+      } else setError(true);
     }
+  };
+
+  const handleCloseModal = () => {
+    setError(false);
+    setLoadingButton(false);
   };
 
   useEffect(() => {
     getAllMessage().then((data) => setMessages(data));
+    if (window.location.hash === "#en") {
+      setEnglish(true);
+    }
   }, []);
 
   return (
     <>
+      <>
+        <title>Hakim&Aqilla</title>
+      </>
+      {error ? (
+        <Modal isEnglish={english} handleClose={handleCloseModal} />
+      ) : (
+        <></>
+      )}
       <Header isEnglish={english} handleButton={handleLanguage} />
       <Banner
         bannerImage={BannerImage}

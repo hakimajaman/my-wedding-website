@@ -4,7 +4,7 @@ import Button from "./base/Button";
 
 const Header = ({ isEnglish, handleButton }) => {
   return (
-    <header className="bg-black bg-opacity-40 w-full fixed z-50 px-5 py-2 flex items-center">
+    <header className="bg-black bg-opacity-40 w-full fixed z-40 px-5 py-2 flex items-center">
       <div>
         <img src={ImageLogo} alt="Hakim&Aqilla" className="w-36" />
       </div>
