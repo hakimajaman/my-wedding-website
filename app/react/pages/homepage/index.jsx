@@ -27,6 +27,8 @@ const HomePage = () => {
 
   const [english, setEnglish] = useState(false);
   const [messages, setMessages] = useState([]);
+  const [totalPages, setTotalPages] = useState(0);
+  const [page, setPage] = useState(1);
   const [loadingButton, setLoadingButton] = useState(false);
   const [error, setError] = useState(false);
 
@@ -35,13 +37,26 @@ const HomePage = () => {
     window.location.hash = english ? "#id" : "#en";
   };
 
+  const handleGetMessages = (data, totalPages, page) => {
+    setMessages(data);
+    setTotalPages(totalPages);
+    setPage(page);
+  };
+
+  const handlePageButton = (page) => {
+    getAllMessage(page).then((data) => {
+      handleGetMessages(data.data, data.totalPages, data.page);
+      setLoadingButton(false);
+    });
+  };
+
   const onSendMessage = (name, message) => {
     if (name.length > 0 && message.length > 0) {
       setLoadingButton(true);
       if (sendValidation()) {
         sendMessage(name, message).then(
           getAllMessage().then((data) => {
-            setMessages(data);
+            handleGetMessages(data.data, data.totalPages, data.page);
             setLoadingButton(false);
           })
         );
@@ -55,7 +70,9 @@ const HomePage = () => {
   };
 
   useEffect(() => {
-    getAllMessage().then((data) => setMessages(data));
+    getAllMessage().then((data) =>
+      handleGetMessages(data.data, data.totalPages, data.page)
+    );
     if (window.location.hash === "#en") {
       setEnglish(true);
     }
@@ -113,7 +130,13 @@ const HomePage = () => {
       </Section>
       {messages.length > 0 ? (
         <Section>
-          <Section8 isEnglish={english} messages={messages} />
+          <Section8
+            isEnglish={english}
+            messages={messages}
+            totalPages={totalPages}
+            page={page}
+            handlePageButton={handlePageButton}
+          />
         </Section>
       ) : (
         <></>

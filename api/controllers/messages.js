@@ -1,4 +1,5 @@
 const { Messages } = require("../models");
+const Pagination = require("../utils/pagination");
 
 exports.createMessage = async (req, res) => {
   const result = await Messages.create({
@@ -10,6 +11,7 @@ exports.createMessage = async (req, res) => {
 };
 
 exports.getAllMessages = async (req, res) => {
-  const result = await Messages.findAll();
+  const messages = await Messages.findAll();
+  const result = await Pagination(messages, req.params.page, req.params.get);
   return res.json(result);
 };

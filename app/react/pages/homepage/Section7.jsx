@@ -22,12 +22,14 @@ const Section7 = ({ isEnglish, handleSend, isLoading }) => {
           className="mb-2"
           onChange={(e) => setName(e.target.value)}
           value={name}
+          maxLength={40}
         />
         <Textarea
           label={isEnglish ? "Message" : "Pesan"}
           type="text"
           onChange={(e) => setMessage(e.target.value)}
           value={message}
+          maxLength={300}
         />
       </form>
       <div className="mt-auto grid grid-cols-3 gap-3">

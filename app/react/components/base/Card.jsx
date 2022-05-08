@@ -5,8 +5,15 @@ const Card = ({
   useShadow,
   customShadowColorClassName,
   className,
+  rootClassName,
+  ...props
 }) => (
-  <div className={`${useShadow ? "relative mb-2" : ""}`}>
+  <div
+    className={`${
+      useShadow ? `relative mb-2 ${rootClassName}` : rootClassName
+    }`}
+    {...props}
+  >
     <div
       className={`
       ${className}

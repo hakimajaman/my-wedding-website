@@ -7,6 +7,6 @@ router.get("/", (req, res) => res.send(201));
 
 // /api/message
 router.post("/message", message.createMessage);
-router.get("/message", message.getAllMessages);
+router.get("/message/:get/:page", message.getAllMessages);
 
 module.exports = router;

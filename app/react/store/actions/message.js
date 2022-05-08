@@ -1,5 +1,5 @@
-export const getAllMessage = () => {
-  return fetch(`/api/message`)
+export const getAllMessage = (page) => {
+  return fetch(`/api/message/10/${page ? page : 1}`)
     .then((response) => response.json())
     .then((result) => result);
 };
