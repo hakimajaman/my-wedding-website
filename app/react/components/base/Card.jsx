@@ -9,12 +9,18 @@ const Card = ({
   <div className={`${useShadow ? "relative mb-2" : ""}`}>
     <div
       className={`
-      rounded-lg p-5
-      border-2
-      border-black bg-white
-        w-full z-20 ${useShadow ? "relative" : ""}
       ${className}
     `}
+      style={{
+        background: "white",
+        borderRadius: "0.5rem",
+        padding: "1.25rem",
+        borderWidth: "2px",
+        borderColor: "black",
+        width: "100%",
+        zIndex: "20",
+        position: useShadow ? "relative" : "static",
+      }}
     >
       {children}
     </div>
