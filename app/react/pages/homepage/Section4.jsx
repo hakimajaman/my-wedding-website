@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "../../components/base/Button";
 
 const AddressComponent = ({ name, time, address, isEnglish }) => (
   <div>
@@ -34,33 +35,48 @@ const Section4 = ({ isEnglish }) => {
     address: "Tembesi Tower, Gang Melati No. 73",
   };
 
+  const handleClickMap = () =>
+    window.open("https://goo.gl/maps/dw6ePM2iW4ZE4jKW7", "_blank").focus();
+
   return (
-    <div className="grid grid-cols-3 gap-3">
-      <AddressComponent
-        name={wedding.name}
-        time={wedding.time}
-        address={wedding.address}
-        isEnglish={isEnglish}
-      />
-      <div className="mt-5">
-        <h5 className="text-3xl italic font-thin">
-          {isEnglish ? "Sunday" : "Ahad,"}
-        </h5>
-        <h1 className="text-7xl">15</h1>
-        <h5 className="text-xl italic font-thin">
-          {isEnglish ? "May 2022" : "Mei 2022 M"}
-        </h5>
-        <h5 className="text-xl italic font-thin">
-          {isEnglish ? "Syawal 14, 1443 H" : "14 Syawal 1443 H"}
-        </h5>
+    <>
+      <div className="grid grid-cols-3 gap-3 mb-10">
+        <AddressComponent
+          name={wedding.name}
+          time={wedding.time}
+          address={wedding.address}
+          isEnglish={isEnglish}
+        />
+        <div className="mt-5">
+          <h5 className="text-3xl italic font-thin">
+            {isEnglish ? "Sunday" : "Ahad,"}
+          </h5>
+          <h1 className="text-7xl">15</h1>
+          <h5 className="text-xl italic font-thin">
+            {isEnglish ? "May 2022" : "Mei 2022 M"}
+          </h5>
+          <h5 className="text-xl italic font-thin">
+            {isEnglish ? "Syawal 14, 1443 H" : "14 Syawal 1443 H"}
+          </h5>
+        </div>
+        <AddressComponent
+          name={party.name}
+          time={party.time}
+          address={party.address}
+          isEnglish={isEnglish}
+        />
       </div>
-      <AddressComponent
-        name={party.name}
-        time={party.time}
-        address={party.address}
-        isEnglish={isEnglish}
-      />
-    </div>
+      <div className="flex justify-center">
+        <div className="w-1/2">
+          <Button
+            onClick={handleClickMap}
+            colorClassName="bg-figma-EA4A8D text-white border-figma-EA4A8D hover:bg-white hover:text-figma-EA4A8D"
+          >
+            {isEnglish ? "See Map Location" : "Lihat Lokasi Map"}
+          </Button>
+        </div>
+      </div>
+    </>
   );
 };
 

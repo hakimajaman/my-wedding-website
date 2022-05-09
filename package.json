@@ -6,6 +6,7 @@
     "start": "node ./app.js",
     "dev": "nodemon ./app.js",
     "dev:frontend": "webpack --watch --mode development",
+    "build": "webpack --mode production",
     "migrate": "sequelize-cli db:migrate",
     "seed": "sequelize-cli db:seed:all --debug"
   },
